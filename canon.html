@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Toko Dashboard</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    header {
+        background-color: #272def;
+        color: white;
+        padding: 10px;
+        text-align: center;
+    }
+    nav {
+        background-color: #dcf25d;
+        color: white;
+        padding: 10px;
+        text-align: center;
+    }
+    nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+    nav ul li {
+        display: inline;
+        margin: 0 10px;
+    }
+    section {
+        padding: 20px;
+    }
+    .product {
+        display: flex;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    .product img {
+        max-width: 100px;
+        max-height: 100px;
+        margin-right: 10px;
+    }
+    .product-info {
+        flex-grow: 1;
+    }
+    .logout-btn {
+    background-color: #272def;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    }
+    .logout-btn:hover {
+     background-color: #d32f2f;
+    }
+
+/* Media queries untuk tata letak responsif */
+@media screen and (max-width: 768px) {
+  nav ul li {
+      display: block;
+      margin: 10px 0;
+  }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <h1>ASTON PRINTER</h1>
+</header>
+
+<nav>
+    <ul>
+        <li><button class="logout-btn" onclick="beranda()">Beranda</button></li>
+        <li><button class="logout-btn" onclick="produk()">Produk</button></li>
+        <li><button class="logout-btn" onclick="pembayaran()">pembayaran</button></li>
+        <li><button class="logout-btn" onclick="profil()">Profil</button></li>
+        <li><button class="logout-btn" onclick="logout()">Logout</button></li>
+    </ul>
+</nav>
+<style>
+    /* Style untuk video player */
+    #video-container {
+        max-width: 100%;
+        overflow: hidden;
+        position: relative;
+    }
+    video {
+        width: 100%;
+        height: auto;
+    }
+    #pause-button {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    @media screen and (max-width: 600px) {
+        #pause-button {
+            bottom: 20px;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div id="video-container">
+    <p><h1><center>Review Printer Canon</center></h1></p>
+    <video id="my-video" width="500" controls>
+        <source src="Printer3.mp4" type="video/mp4">
+    </video>
+    <button class="logout-btn" onclick="produk()">Beli</button>
+</div>
+
+<script>
+    // Ambil elemen video dan tombol pause
+    var video = document.getElementById("my-video");
+    var pauseButton = document.getElementById("pause-button");
+
+    // Tambahkan event listener untuk klik tombol pause
+    pauseButton.addEventListener("click", function() {
+        // Periksa apakah video sedang diputar
+        if (video.paused) {
+            // Jika video sedang di-pause, mainkan video
+            video.play();
+            // Ubah teks tombol menjadi "Pause"
+            pauseButton.textContent = "Pause";
+        } else {
+            // Jika video sedang diputar, pause video
+            video.pause();
+            // Ubah teks tombol menjadi "Play"
+            pauseButton.textContent = "Play";
+        }
+    });
+</script>
+<footer>
+    <p>&copy; 2024 Aston pekalongan</p>
+</footer>
+<script>
+    function logout() {
+        // Tambahkan logika logout di sini, misalnya menghapus sesi atau mengarahkan ke halaman login
+        // Contoh sederhana, mengarahkan ke halaman login
+        window.location.href = "index.html";
+    }
+    function beranda(){
+        window.location.href = "dasboard.html";
+    }
+    function produk(){
+        window.location.href = "produk.html";
+    }
+    function pembayaran(){
+        window.location.href = "pembayaran.html";
+    }
+    function profil(){
+        window.location.href = "profil.html";
+    }
+    </script>
+</body>
+</html>

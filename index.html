@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Page</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    form {
+        margin: 50px auto;
+        width: 300px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+    input[type="text"],
+    input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0;
+        box-sizing: border-box;
+    }
+    input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+        background-color: #272def;
+        border: none;
+        color: white;
+        cursor: pointer;
+    }
+    input[type="submit"]:hover {
+        background-color: #dcf25d;
+    }
+    /* Media queries untuk responsivitas */
+    @media screen and (max-width: 600px) {
+        form {
+            width: 90%; /* Menggunakan 90% lebar pada layar kecil */
+        }
+    }
+</style>
+</head>
+<body>
+
+<form id="loginForm">
+    <h2>Login</h2>
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+    <p id="registerLink">Belum punya akun? <a href="#" onclick="toggleRegisterForm()">Daftar sekarang</a></p>
+    <input type="submit" value="Login">
+</form>
+
+<form id="registerForm" style="display:none;">
+    <h2>Registrasi</h2>
+    <label for="newUsername">Username:</label>
+    <input type="text" id="newUsername" name="newUsername" required>
+    <label for="newPassword">Password:</label>
+    <input type="password" id="newPassword" name="newPassword" required>
+    <input type="submit" value="Registrasi">
+</form>
+
+<script>
+document.getElementById("loginForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+    
+    // Memeriksa apakah data login cocok dengan data pendaftaran yang tersimpan
+    var registeredUsername = localStorage.getItem("registeredUsername");
+    var registeredPassword = localStorage.getItem("registeredPassword");
+    
+    if (username === registeredUsername && password === registeredPassword) {
+        // Jika login berhasil, arahkan ke halaman dashboard
+        window.location.href = "dasboard.html";
+    } else {
+        // Jika login gagal, tampilkan pesan error
+        alert("Login gagal. Username atau password salah.");
+    }
+});
+
+document.getElementById("registerForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    var newUsername = document.getElementById("newUsername").value;
+    var newPassword = document.getElementById("newPassword").value;
+    
+    // Simpan data pendaftaran ke penyimpanan lokal browser
+    localStorage.setItem("registeredUsername", newUsername);
+    localStorage.setItem("registeredPassword", newPassword);
+    
+    alert("Registrasi berhasil untuk username: " + newUsername + ", password: " + newPassword);
+    
+    // Setelah registrasi berhasil, arahkan pengguna kembali ke halaman login
+    toggleRegisterForm(); // Sembunyikan formulir pendaftaran
+});
+  
+function toggleRegisterForm() {
+    var registerForm = document.getElementById("registerForm");
+    var registerLink = document.getElementById("registerLink");
+    if (registerForm.style.display === "none") {
+        registerForm.style.display = "block";
+        registerLink.style.display = "none";
+    } else {
+        registerForm.style.display = "none";
+        registerLink.style.display = "block";
+    }
+}
+</script>
+
+</body>
+</html>
